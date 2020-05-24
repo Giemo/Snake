@@ -7,6 +7,13 @@
 #include "renderer.h"
 #include "snake.h"
 
+enum class GameDifficulty
+{
+  Easy,
+  Medium,
+  Hard
+};
+
 class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height);
@@ -14,10 +21,12 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
+  void SetDifficulty(const std::string& difficulty);
 
  private:
   Snake snake;
   SDL_Point food;
+  GameDifficulty difficulty_{GameDifficulty::Easy};
 
   std::random_device dev;
   std::mt19937 engine;
@@ -28,6 +37,7 @@ class Game {
 
   void PlaceFood();
   void Update();
+  void UpdateSnakeSpeed();
 };
 
 #endif

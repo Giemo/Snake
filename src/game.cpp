@@ -10,6 +10,30 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
   PlaceFood();
 }
 
+void Game::SetDifficulty(const std::string& difficulty)
+{
+  if(difficulty == "1" || difficulty == "Easy")
+  {
+    difficulty_ = GameDifficulty::Easy;
+    std::cout << "\nYou chose the difficulty EASY" << std::endl;
+  }
+  else if(difficulty == "2" || difficulty == "Medium")
+  {
+    difficulty_ = GameDifficulty::Medium;
+    std::cout << "\nYou chose the difficulty MEDIUM" << std::endl;
+  }
+  else if(difficulty == "3" || difficulty == "Hard")
+  {
+    difficulty_ = GameDifficulty::Hard;
+    std::cout << "\nYou chose the difficulty HARD" << std::endl;
+  }
+  else
+  {
+    std::cout << "\nYou did not provide a valid difficulty level.\nThe game will continue with the Easy difficulty!" << std::endl;
+  }  
+}
+
+
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
@@ -79,7 +103,25 @@ void Game::Update() {
     PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
-    snake.speed += 0.02;
+    UpdateSnakeSpeed();  
+    }
+}
+
+void Game::UpdateSnakeSpeed()
+{
+  switch(difficulty_)
+  {
+    case GameDifficulty::Easy:
+      snake.speed += 0.02;
+      break;
+    case GameDifficulty::Medium:
+      snake.speed += 0.03;
+      break;
+    case GameDifficulty::Hard:
+      snake.speed += 0.04;
+      break;
+    default:
+      snake.speed += 0.02;
   }
 }
 

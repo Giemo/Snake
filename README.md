@@ -29,3 +29,15 @@ In this project, you can build your own C++ application or extend this Snake gam
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./SnakeGame`.
+
+## Expected Behavior of the program
+
+At the start the user chooses a difficulty level (Easy, Medium, Hard), which changes the snakes speed increment every time the snake eats food.
+
+## Rubric Points Addressed
+
+1. The project accepts user input and processes the input: main.cpp Line: 16
+2. Classes encapsulate behavior: game.h Line 29; game.cpp Line 13-43
+3. Classes use appropriate access specifiers for class members: game.h Line 24 and Line 40
+4. The project uses Object Oriented Programming techniques: game.h Line 10-15
+5. The project demonstrates an understanding of C++ functions and control structures: game.cpp Line 110-126
